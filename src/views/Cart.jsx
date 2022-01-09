@@ -51,11 +51,11 @@ function Cart() {
         const colorIndex = array[index].variations.findIndex(el => el.color === color)
         if (array[index].variations[colorIndex].quantity >= quantity)
         {
+    
             return <span class="badge rounded-pill bg-info">Available</span>
         }
         else{
             return <span class="badge rounded-pill bg-danger">Not Available</span>
-
         }
     }
 
@@ -124,7 +124,10 @@ function Cart() {
                             <div className="col-sm-12 col-md-6">
                             </div>
                             <div className="col-sm-12 col-md-6 col-checkout">
-                                <a href="checkout.html" className="checkout">Proceed to Checkout</a>
+                              
+                                <Link to="/checkout" className="checkout">Proceed to Checkout</Link>
+                                
+                                
                             </div>
                         </div>
                     </div>

@@ -11,6 +11,7 @@ import Home from "./views/Home";
 import SingleBlog from "./views/SingleBlog";
 import Cart from "./views/Cart";
 import Wishlist from "./views/Wishlist";
+import Checkout from "./views/Checkout";
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/login" exact element={<Auth />} />
           <Route path="/" exact element={<Home />} />
           <Route path="/cart" exact element={<Cart />} />
+          <Route path="/checkout" exact element={<Checkout />} />
           <Route path="/wishlist" exact element={<Wishlist />} />
           <Route path="/product/:id" exact element={<SingleProduct />} />
           <Route path="/blogs/:id" exact element={<SingleBlog />} />

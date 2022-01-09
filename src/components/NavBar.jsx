@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom"
+
 function NavBar() {
     return (
         <>
@@ -63,8 +65,8 @@ function NavBar() {
                             </div>
                             <div className="home-cart d-none d-md-block">
                                 <span><a href="/"><i className="bi bi-search"></i></a>&nbsp;</span>
-                                <span><a href="/"><i className="bi bi-heart"></i> 02 &nbsp;</a></span>
-                                <span><a href="/"><i className="bi bi-cart4"></i> 02</a></span>
+                                <span><Link to="/wishlist"><i className="bi bi-heart"></i> 02 &nbsp;</Link></span>
+                                <span><Link to="/cart"><i className="bi bi-cart4"></i> 02</Link></span>
 
                             </div>
                         </div>

@@ -22,7 +22,7 @@ function Cart() {
     const renderDiscountedPrice = (price, discount) => {
         return Math.floor(price - ((discount * price) / 100))
     }
-    let cost = 0
+    
     const handleEditCart = async(id, quantity, productId) => {
         const result = await editWishlist({
             quantity, productId
@@ -32,7 +32,7 @@ function Cart() {
         const products = [...data]
         products[index].quantity = quantity
         setData(products)
-        cost = 0
+     
         
     
     }
@@ -40,7 +40,7 @@ function Cart() {
     const handleDeleteCart = async(id) => {
         const result = await deleteWishlist(id)
         const prod = data.filter(el => el._id !== id)
-        cost = 0
+       
         console.log(prod)
         setData(prod)
         
@@ -70,7 +70,6 @@ function Cart() {
                         </thead>
                         <tbody>
                             {data.length > 0 && data.map(el => {
-                                cost += (renderDiscountedPrice(el.productId.regularPrice, el.productId.discountPercentage) * el.quantity)
                                 return (
                                     <tr>
                                     <th className="cart-image"><img src={`http://localhost:5000/${el.productId.frontImage}`} alt="" srcset="" /></th>

@@ -31,9 +31,9 @@ function Login()
         delete request_data.rePassword
         const result = await login(request_data)
         const token = result.token
-        //   const username = result.data.firstname + " " + result.data.lastname
+       
           localStorage.setItem('token', token)
-          localStorage.setItem('userId', result.data._id)
+         
           navigate("/")
            
     }
