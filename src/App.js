@@ -1,24 +1,37 @@
-import logo from './logo.svg';
-import './App.css';
+import { Route, Routes } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import Brands from "./components/Brands";
+import Footer from "./components/Footer";
+import NavBar from "./components/NavBar";
+import Auth from "./views/Auth";
+import SingleProduct from "./views/SingleProduct";
+import "./css/style.css"
+import Home from "./views/Home";
+import SingleBlog from "./views/SingleBlog";
+import Cart from "./views/Cart";
+import Wishlist from "./views/Wishlist";
 
 function App() {
+
+    
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <>
+    <ToastContainer />
+      <NavBar />
+      <div className="container-fluid">
+      <Routes>
+          <Route path="/login" exact element={<Auth />} />
+          <Route path="/" exact element={<Home />} />
+          <Route path="/cart" exact element={<Cart />} />
+          <Route path="/wishlist" exact element={<Wishlist />} />
+          <Route path="/product/:id" exact element={<SingleProduct />} />
+          <Route path="/blogs/:id" exact element={<SingleBlog />} />
+        </Routes>
+      </div>
+      <Brands />
+      <Footer />
+    </>
   );
 }
 
