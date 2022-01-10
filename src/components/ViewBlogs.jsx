@@ -24,13 +24,17 @@ function ViewBlogs() {
 }
      
     return (
-        blogs.length > 0 &&
+        <div className="container">
+            {blogs.length > 0 &&
         <div className="row">
             {renderBlogs()}
             {renderBlogs()}
             {renderBlogs()}
             {renderBlogs()}
-        </div>)
+        </div>}
+        </div>
+    )
+        
 }
 
 export default ViewBlogs

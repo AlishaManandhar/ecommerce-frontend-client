@@ -757,7 +757,10 @@ small{
     color: white;
 }
 /* ******************Banner ends here **************/
-
+.filter-product a:hover
+{
+    background-color: rgba(148, 199, 235,1);
+}
 
 @media only screen and (max-width: 1024px) {
     
@@ -767,3 +770,4 @@ small{
     }
 
 }
+

@@ -12,6 +12,11 @@ export  function getProducts() {
   return result
 }
 
+
+export  function getsearchedProduct(request_data) {
+  let result =  http.get(apiEndpoint + "?search=" + request_data)
+  return result
+}
 export  function getProduct(id) {
   let result = http.get(apiEndpoint + id)
   return result

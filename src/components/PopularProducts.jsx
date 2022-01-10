@@ -19,7 +19,7 @@ function PopularProducts() {
         const data = products.slice(0,8)
         return data.map(product => {
             return (
-                <div className="col-sm-12 col-md-3">
+                <div className="col-sm-12 col-md-3" key={product._id} >
                 <div className="card mx-auto" style={{width: "18rem"}}>
                     <img src={`http://localhost:5000/${product.frontImage}`} className="card-img-top" alt="..." />
                     <div class="card-body">

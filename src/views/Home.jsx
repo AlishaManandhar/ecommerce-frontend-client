@@ -10,7 +10,10 @@ function Home()
         <HomeCarousel />
      <PopularProducts />
         <ShippingFlow />
-        <ViewBlogs />
+        <div className="container">
+            <ViewBlogs />
+        </div>
+        
         </>
     )
 }

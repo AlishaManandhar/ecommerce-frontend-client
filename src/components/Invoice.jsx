@@ -1,15 +1,19 @@
 import { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { toast } from "react-toastify";
 import { getCart } from "../services/cartServices";
+import { createOrder } from "../services/orderServices";
 
-function Invoice()
+function Invoice(props)
 {
+    const {userData} = props
     const [data, setData] = useState([])
     async function fetchData() {
         const { data } = await getCart()
         setData(data)
     }
     
-   
+   const navigate = useParams()
     useEffect(() => {
         fetchData();
         return "Completed"
@@ -18,7 +22,48 @@ function Invoice()
     const renderDiscountedPrice = (price, discount) => {
         return Math.floor(price - ((discount * price) / 100))
     }
-    let status = true
+    const handlePlaceOrder = async () => {
+        if (status === "no")
+        {
+            return toast.error("Some products are available. Please cancel unavailable products marked in red")
+        }
+        const requestData = {...userData}
+        if (requestData.firstname === "")
+        {
+            return toast.error("Please Enter Name Correctly")
+        }
+        else if  (requestData.lastname === "")
+        {
+            return toast.error("Please Enter LastName Correctly")
+        }
+        
+        else if (requestData.city === "" )
+        {
+            return toast.error("Please Enter  City")
+        }
+        else if (requestData.area === "" )
+        {
+            return toast.error("Please Enter  Area")
+        }
+        else if (requestData.address === "" )
+        {
+            return toast.error("Please Enter  Address")
+        }
+        else if (requestData.email === "")
+        {
+            return toast.error("Please Enter Valid Email")
+        }
+        else if (requestData.contact===  "")
+        {
+            return toast.error("Please ENter your contact")
+        }
+
+        const result = await createOrder(requestData)
+        navigate("/")
+
+         
+    }
+    let status = "yes"
     const renderStatus = (array, size, color, quantity) => {
         const index = array.findIndex(el => el.size === size)
         const colorIndex = array[index].variations.findIndex(el => el.color === color)
@@ -28,7 +73,7 @@ function Invoice()
             return ""
         }
         else{
-            status = false
+            status = "no"
             return <span class="badge rounded-pill bg-danger">Not Available</span>
         }
     }
@@ -75,7 +120,7 @@ function Invoice()
                     </div>
                         
                     <div className="mt-3 pt-3">
-                        <button type="button" className="checkout" disabled={status ? false : true} onClick={() => alert("Ok")}>Place Order</button>
+                        <button type="button" className="checkout"  onClick={handlePlaceOrder}>Place Order</button>
                     </div>
 
                 </div>

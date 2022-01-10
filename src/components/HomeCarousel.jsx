@@ -31,7 +31,7 @@ function HomeCarousel() {
                 <h2>Get 10% off </h2>
                 <h2>Latest baby product</h2>
 
-                <a href="#" class="shop">Shop now</a>
+                <a href="#popular-section" class="shop">Shop now</a>
             </div></div>
         /* <!--------------------------- banner ends here ---------------------------------> */
     )
