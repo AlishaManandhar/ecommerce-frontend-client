@@ -50,7 +50,7 @@ function Search(props) {
             <PageInfo title="Search product" active="Search" />
 
             <div className="container">
-                <div className="row">
+                {/* <div className="row">
                     <div className="col-sm-12 col-md-8 ps-3 ms-3">
                         <div className="dropdown filter-product">
                             <button className="btn bg-main dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
@@ -80,7 +80,7 @@ function Search(props) {
                             </ul>
                         </div>
                     </div>
-                </div>
+                </div> */}
                 <div className="row products mt-3">
                     {products && renderProducts()}
                 </div>

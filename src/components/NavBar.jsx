@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import { Link, useNavigate } from "react-router-dom"
-import { getsearchedProduct } from "../services/productServices"
+import { getProductsByCategory, getsearchedProduct } from "../services/productServices"
 import { getSubCategories } from "../services/subCategoryServices"
 
 function NavBar() {
@@ -44,6 +44,12 @@ function NavBar() {
         return navigate("/search", { state: { data: products } })
     }
 
+    const handleOnClickCategory = async (id) => {
+        const {data} = await getProductsByCategory(id)
+        setProducts(data)
+        return navigate("/search", { state: { data: products } })
+    }
+
 
     return (
         <>
@@ -59,7 +65,7 @@ function NavBar() {
                         <div className="col">
                             <div className="row">
                                 <div className="col">
-                                    <h6><a href="/" >My account</a></h6>
+                                    <h6><Link to="/order" >My Orders</Link></h6>
                                 </div>
                                 <div className="col">
                                     <h6><a href="/login" >Register | Login</a></h6>
@@ -99,18 +105,8 @@ function NavBar() {
                                         <ul className="dropdown-menu" aria-labelledby="navbarScrollingDropdown">
                                             {categories.map(el => {
                                                 return (
-                                                    <>
-                                                   
-                                                    
                                                     <li>
-                                                    <div class="dropdown">
-                                                        <button type="button" class="btn dropdown-toggle" data-bs-toggle={el.category} id={el.category} aria-expanded="false">{el.category}  </button>
-                                                    </div>
-                                                    <ul class="dropdown-menu" aria-labelledby={el.category}>
-                                                    {el.subCategory.map(data => <li><a class="dropdown-item" href="/cart">{data.subCategoryName}</a></li>)}
-                                                </ul>
-                                                </li>
-                                                </>
+                                                    <a class="dropdown-item" onClick={() =>handleSearchClick(el.categories)}>{el.category}</a></li>
                                                 )
                                             })}
 
@@ -132,8 +128,8 @@ function NavBar() {
                             </form>
                             <div className="home-cart d-none d-md-block">
                                 {/* <span><a href="/"><i className="bi bi-search"></i></a>&nbsp;</span> */}
-                                <span><Link to="/wishlist"><i className="bi bi-heart"></i> 02 &nbsp;</Link></span>
-                                <span><Link to="/cart"><i className="bi bi-cart4"></i> 02</Link></span>
+                                <span><Link to="/wishlist"><i className="bi bi-heart"></i> 02&nbsp;</Link></span>
+                                <span><Link to="/cart"><i className="bi bi-cart4"></i>02</Link></span>
 
                             </div>
                         </div>

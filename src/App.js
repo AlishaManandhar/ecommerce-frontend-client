@@ -15,6 +15,7 @@ import Checkout from "./views/Checkout";
 import Search from "./views/SearchProduct";
 import ViewBlogs from "./components/ViewBlogs";
 import Orders from "./views/Orders";
+import SingleOrder from "./views/SingleOrder";
 
 function App() {
 
@@ -29,6 +30,7 @@ function App() {
           <Route path="/" exact element={<Home />} />
           <Route path="/cart" exact element={<Cart />} />
           <Route path="/order" exact element={<Orders />} />
+          <Route path="/order/:id" exact element={<SingleOrder />} />
           <Route path="/blog" exact element={<ViewBlogs />} />
           <Route path="/search" exact element={<Search />} />
           <Route path="/checkout" exact element={<Checkout />} />

@@ -13,6 +13,12 @@ export  function getProducts() {
 }
 
 
+export  function getProductsByCategory(id) {
+  let result =  http.get(apiEndpoint + "?category=" + id)
+  return result
+}
+
+
 export  function getsearchedProduct(request_data) {
   let result =  http.get(apiEndpoint + "?search=" + request_data)
   return result

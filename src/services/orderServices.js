@@ -16,6 +16,11 @@ export  function getMyOrder() {
   let result =  http.get(apiEndpoint + "my-order")
   return result
 }
+export  function getOrderById(id) {
+
+  let result =  http.get(apiEndpoint + "myorder-products/" + id)
+  return result
+}
 
 export  function editCart(request_data,id) {
   let result = http.put(apiEndpoint + id, request_data)

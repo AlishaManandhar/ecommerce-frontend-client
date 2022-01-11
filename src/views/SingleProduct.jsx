@@ -281,7 +281,7 @@ function SingleProduct() {
                                 <button className="cart me-2 mb-1" onClick={handleOnCartClick}> <i className="bi bi-cart"></i>&nbsp;&nbsp;Add to cart</button>
                                 <button className="buy-now me-2"  onClick={handleOnBuyNow}>Buy Now</button>
                                 <button className="wishlist me-2" onClick={handleOnWishListClick}> <i className="bi bi-heart"></i></button>
-                                <button className="share" onClick={() => { navigator.clipboard.writeText("localhost:3000/product/" + id); alert("Link Copied") }}> <i className="bi bi-share"></i></button>
+                                <button className="share" onClick={() => { navigator.clipboard.writeText("localhost:8082/product/" + id); alert("Link Copied") }}> <i className="bi bi-share"></i></button>
                             </div>
                             <DataSpecs warranty={data.warranty} material={data.material} gender={data.gender} category={data.categoryId.subCategoryName} />
 

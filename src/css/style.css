@@ -762,6 +762,23 @@ small{
     background-color: rgba(148, 199, 235,1);
 }
 
+.order-table table{
+    font-size: large;
+} 
+
+.order-product-table tr td{
+    font-size: large;
+}
+
+.order-link a{
+    color: black;
+}
+
+.order-link a:hover {
+    color: #ff708a;
+}
+
+
 @media only screen and (max-width: 1024px) {
     
 

@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
-
-import { toast } from 'react-toastify'
 import { paginate } from "../utils/paginate"
-import Pagination from '../components/Paginate'
+// import Pagination from '../components/Paginate'
 import { getMyOrder } from '../services/orderServices'
-import moment from 'moment'
+
 import { Link } from 'react-router-dom'
 import PageInfo from '../components/PageInfo'
 
@@ -31,32 +29,47 @@ function Order() {
         setPage(data)
     };
 
-    const handleOrder = (id) => {
+    const handleOrderStatus = (id) => {
         setStatus(id)
     }
 
     const getPagedData = () => {
         const { pageSize, currentPage } = page
         const allOrders = orders.filter(el => el.orderStatus === status)
-
+        
         return paginate(allOrders, currentPage, pageSize);
     };
+
+    const renderOrderStatus = () => {
+        if (status === "Pending") {
+            return "bg-info"
+        }
+        else if (status === "Processing") {
+            return "bg-primary"
+        }
+        else if (status === "Shipped") {
+            return "bg-success"
+        }
+    }
     return (
         <>
             <PageInfo title="Orders" active="Order" />
             <div className="container">
-                <div className="dropdown filter-product">
+                <div className="dropdown filter-product ms-3">
                     <button className="btn bg-main dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                         <i className="bi bi-funnel-fill"></i>&nbsp;Filter
                     </button>
                     <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                        <li><a className="dropdown-item" href="#">Pending</a></li>
-                        <li><a className="dropdown-item" href="#">Processing</a></li>
-                        <li><a className="dropdown-item" href="#">Shipped</a></li>
+                        <li><a className="dropdown-item" onClick={() => handleOrderStatus("Pending")}>Pending</a></li>
+                        <li><a className="dropdown-item" onClick={() => handleOrderStatus("Processing")}>Processing</a></li>
+                        <li><a className="dropdown-item" onClick={() => handleOrderStatus("Shipped")}>Shipped</a></li>
                     </ul>
                 </div>
 
                 <div className="order-table container">
+                    <div className="alert alert-info text-center mt-3" role="alert">
+                        <b>{status} Orders</b>
+                    </div>
                     <div className="table-responsive-sm">
                         <table className="table">
                             <thead>
@@ -69,7 +82,7 @@ function Order() {
                                 </tr>
                             </thead>
                             <tbody>
-                                {orders && orders.map(el => {
+                                {orders && getPagedData().map(el => {
                                     return (
                                         <>
                                             <tr>
@@ -79,8 +92,8 @@ function Order() {
                                                 <td>
                                                     {el.shippingPrice}
                                                 </td>
-                                                <td>{el.orderStatus}</td>
-                                                <td>{`Province: ${el.province},${el.city},${el.area},${el.address}`}</td>
+                                                <td><span className={`badge rounded-pill ${renderOrderStatus()}`} > {el.orderStatus} </span> </td>
+                                                <td width="350px">{`Province: ${el.province},${el.city},${el.area},${el.address}`}</td>
                                             </tr>
 
 
